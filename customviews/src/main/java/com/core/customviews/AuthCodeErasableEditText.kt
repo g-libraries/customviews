@@ -51,14 +51,12 @@ class AuthCodeErasableEditText : ToggleBackgroundEditText {
         }
 
     }
+}
 
-    fun Array<AuthCodeErasableEditText>.getTextFromTextViews(): String {
-        var result = ""
-        for (view in this) {
-            result = result.plus(view.text.toString())
-        }
-        return result
+fun Array<AuthCodeErasableEditText>.getTextFromTextViews(): String {
+    var result = ""
+    for (view in this) {
+        result = result.plus(view.text.toString())
     }
-
-
+    return result
 }
