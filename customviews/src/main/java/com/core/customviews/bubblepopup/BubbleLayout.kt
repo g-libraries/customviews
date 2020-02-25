@@ -73,18 +73,13 @@ class BubbleLayout : RelativeLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        val params = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        layoutParams = params
-
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.BubbleLayout)
 
             try {
                 padding = a.getDimensionPixelSize(R.styleable.BubbleLayout_padding, padding)
                 shadowColor = a.getInt(R.styleable.BubbleLayout_shadowColor, shadowColor)
+                bgColor = a.getInt(R.styleable.BubbleLayout_bgColor, bgColor)
                 legHalfBase =
                     a.getDimensionPixelSize(R.styleable.BubbleLayout_halfBaseOfLeg, legHalfBase)
                 minLegDistance = (padding + legHalfBase).toFloat()
