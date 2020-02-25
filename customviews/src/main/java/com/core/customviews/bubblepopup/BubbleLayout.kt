@@ -31,12 +31,11 @@ class BubbleLayout @JvmOverloads constructor(
     var legHalfBase = 30
     var strokeWidth = 2.0f
     var cornerRadius = 8.0f
-    var shadowColor = Color.argb(100, 0, 0, 0)
-    var bgColor = Color.argb(100, 255, 255, 255)
+    var shadowColor = Color.argb(255, 0, 0, 0)
+    var bgColor = Color.argb(255, 0, 0, 0)
     var minLegDistance = (padding + legHalfBase).toFloat()
     var bubbleMargin = 16f
 
-    private var mFillPaint: Paint? = null
     private val mPath = Path()
     private val mBubbleLegPrototype = Path()
     private val mPaint = Paint(Paint.DITHER_FLAG)
@@ -79,22 +78,11 @@ class BubbleLayout @JvmOverloads constructor(
             }
         }
 
-        mPaint.color = shadowColor
+        mPaint.color = bgColor
         mPaint.style = Style.FILL
         mPaint.strokeCap = Cap.BUTT
         mPaint.isAntiAlias = true
-        mPaint.strokeWidth = strokeWidth
-        mPaint.strokeJoin = Paint.Join.MITER
         mPaint.pathEffect = CornerPathEffect(cornerRadius)
-
-        setLayerType(View.LAYER_TYPE_SOFTWARE, mPaint)
-
-        mFillPaint = Paint(mPaint)
-        mFillPaint?.color = bgColor
-
-        setLayerType(View.LAYER_TYPE_SOFTWARE, mFillPaint)
-
-        mPaint.setShadowLayer(2f, 2f, 5f, shadowColor)
 
         renderBubbleLegPrototype()
 
@@ -168,14 +156,6 @@ class BubbleLayout @JvmOverloads constructor(
         mPath.addPath(mBubbleLegPrototype, renderBubbleLegMatrix(width, height))
 
         canvas.drawPath(mPath, mPaint)
-        canvas.scale(
-            (width - strokeWidth) / width,
-            (height - strokeWidth) / height,
-            width / 2f,
-            height / 2f
-        )
-
-        canvas.drawPath(mPath, mFillPaint!!)
     }
 
 
