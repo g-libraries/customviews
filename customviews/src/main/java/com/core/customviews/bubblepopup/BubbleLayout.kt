@@ -21,11 +21,22 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.core.customviews.R
 
-class BubbleLayout constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyle: Int = 0
-) : RelativeLayout(context, attrs, defStyle) {
+class BubbleLayout : RelativeLayout {
+
+    constructor(context: Context?) : super(context) {
+        init(context!!, null)
+    }
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(context!!, attrs)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        init(context!!, attrs)
+    }
 
     var padding = 30
     var legHalfBase = 30
@@ -45,12 +56,20 @@ class BubbleLayout constructor(
     private var mBubbleOrientation = BubbleLegOrientation.LEFT
 
 
+    constructor(
+        context: Context?,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
+
+
     enum class BubbleLegOrientation {
         TOP, LEFT, RIGHT, BOTTOM, NONE
     }
 
     init {
-        init(context, attrs)
+        init(context, null)
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
