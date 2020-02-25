@@ -41,7 +41,7 @@ class BubblePopupWindow(private val context: Context) : PopupWindow() {
         bubbleView = BubbleLayout(context)
         bubbleView!!.setBackgroundColor(Color.TRANSPARENT)
         bubbleView!!.addView(view)
-        contentView = view
+        contentView = bubbleView
     }
 
     fun setParam(width: Int, height: Int) {
