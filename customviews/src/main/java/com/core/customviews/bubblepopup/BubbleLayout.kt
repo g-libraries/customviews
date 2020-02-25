@@ -21,22 +21,11 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.core.customviews.R
 
-class BubbleLayout : RelativeLayout {
-
-    constructor(context: Context?) : super(context) {
-        init(context!!, null)
-    }
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        init(context!!, attrs)
-    }
-
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init(context!!, attrs)
-    }
+class BubbleLayout @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
+) : RelativeLayout(context, attrs, defStyle) {
 
     var padding = 30
     var legHalfBase = 30
@@ -56,23 +45,21 @@ class BubbleLayout : RelativeLayout {
     private var mBubbleOrientation = BubbleLegOrientation.LEFT
 
 
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes)
-
-
     enum class BubbleLegOrientation {
         TOP, LEFT, RIGHT, BOTTOM, NONE
     }
 
     init {
-        init(context, null)
+        init(context, attrs)
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
+        val params = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        layoutParams = params
+
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.BubbleLayout)
 
@@ -104,8 +91,6 @@ class BubbleLayout : RelativeLayout {
 
         mFillPaint = Paint(mPaint)
         mFillPaint?.color = bgColor
-        mFillPaint?.shader =
-            LinearGradient(100f, 0f, 100f, 200f, bgColor, bgColor, TileMode.CLAMP)
 
         setLayerType(View.LAYER_TYPE_SOFTWARE, mFillPaint)
 
