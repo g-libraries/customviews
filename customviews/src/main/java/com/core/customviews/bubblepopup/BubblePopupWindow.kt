@@ -44,6 +44,11 @@ class BubblePopupWindow(private val context: Context) : PopupWindow() {
         contentView = bubbleView
     }
 
+    fun setBubbleView(view: BubbleLayout) {
+        bubbleView = view
+        contentView = bubbleView
+    }
+
     fun setParam(width: Int, height: Int) {
         setWidth(width)
         setHeight(height)
