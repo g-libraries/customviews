@@ -38,7 +38,15 @@ class BubblePopupWindow(private val context: Context) : PopupWindow() {
     }
 
     fun setBubbleView(view: View) {
+        bubbleView = BubbleLayout(context)
+        bubbleView!!.setBackgroundColor(Color.TRANSPARENT)
+        bubbleView!!.addView(view)
         contentView = view
+    }
+
+    fun setBubbleView(bubbleLayout: BubbleLayout) {
+        bubbleView = bubbleLayout
+        contentView = bubbleLayout
     }
 
     fun setParam(width: Int, height: Int) {
@@ -62,7 +70,7 @@ class BubblePopupWindow(private val context: Context) : PopupWindow() {
                 Gravity.START -> BubbleLayout.BubbleLegOrientation.RIGHT
                 else -> BubbleLayout.BubbleLegOrientation.NONE
             }
-            bubbleView!!.setBubbleParams(orientation, (measuredWidth / 2).toFloat())
+            bubbleView?.setBubbleParams(orientation, (measuredWidth / 2).toFloat())
 
             val location = IntArray(2)
             parent.getLocationOnScreen(location)
