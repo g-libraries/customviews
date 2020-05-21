@@ -11,4 +11,8 @@
         <attr name="halfBaseOfLeg" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="IncrDecrView">
+        <attr name="layout" format="reference" />
+    </declare-styleable>
+
 </resources>
