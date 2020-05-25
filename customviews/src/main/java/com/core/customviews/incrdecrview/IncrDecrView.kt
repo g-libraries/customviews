@@ -69,7 +69,7 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
             val a = context.obtainStyledAttributes(attrs, R.styleable.IncrDecrView)
 
             try {
-                layoutId = a.getDimensionPixelSize(R.styleable.IncrDecrView_layout, layoutId)
+                layoutId = a.getResourceId(R.styleable.IncrDecrView_layout, layoutId)
             } finally {
                 a.recycle()
             }
