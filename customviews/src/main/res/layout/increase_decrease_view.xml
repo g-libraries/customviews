@@ -15,8 +15,7 @@
         android:paddingBottom="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="minus" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/incr_decr_view_minus_divider"
