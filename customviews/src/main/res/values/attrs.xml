@@ -15,4 +15,15 @@
         <attr name="layout" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="TogglePassword">
+        <attr name="tp_textSize" format="dimension" />
+        <attr name="tp_textColor" format="color" />
+        <attr name="tp_hintColor" format="color" />
+        <attr name="tp_hint" format="string" />
+        <attr name="tp_new_password_mode" format="boolean" />
+        <attr name="tp_background" format="reference" />
+        <attr name="tp_icon" format="reference" />
+        <attr name="tp_icon_padding" format="dimension" />
+    </declare-styleable>
+
 </resources>
