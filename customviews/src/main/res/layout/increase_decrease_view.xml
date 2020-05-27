@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/default_button_height">
+    android:layout_height="wrap_content">
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -17,13 +16,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_minus_incr" />
+        app:srcCompat="minus" />
 
     <View
         android:id="@+id/incr_decr_view_minus_divider"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="@color/hint_50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/incr_decr_view_minus_iv"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,14 +30,6 @@
         android:id="@+id/incr_decr_view_count_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_large_padding"
-        android:layout_marginEnd="@dimen/default_large_padding"
-        android:background="@android:color/transparent"
-        android:inputType="number"
-        android:text="1"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/_12sdp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/incr_decr_view_plus_iv"
         app:layout_constraintStart_toEndOf="@+id/incr_decr_view_minus_iv"
@@ -49,7 +39,6 @@
         android:id="@+id/incr_decr_view_plus_divider"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="@color/hint_50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/incr_decr_view_plus_iv"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,8 +53,6 @@
         android:paddingBottom="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plus_incr" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </merge>

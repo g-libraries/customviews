@@ -9,14 +9,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.getResourceIdOrThrow
 import com.core.customviews.R
 import kotlinx.android.synthetic.main.increase_decrease_view.view.*
+import timber.log.Timber
+import java.lang.IllegalStateException
 
 class IncrDecrView : ConstraintLayout, IIncrDecrView {
-    constructor(context: Context) : super(context) {
-        init(context, null)
-    }
-
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context, attrs)
     }
@@ -38,7 +37,7 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
     private var minNumber: Int = 0
 
     @LayoutRes
-    private var layoutId: Int = R.layout.increase_decrease_view
+    private var layoutId: Int = 0
 
     var listener: OnNumberChangedListener? = null
 
@@ -68,8 +67,9 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.IncrDecrView)
 
+
             try {
-                layoutId = a.getResourceId(R.styleable.IncrDecrView_layout, layoutId)
+                layoutId = a.getResourceIdOrThrow(R.styleable.IncrDecrView_layout)
             } finally {
                 a.recycle()
             }
