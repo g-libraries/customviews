@@ -16,6 +16,8 @@
     </declare-styleable>
 
     <declare-styleable name="TogglePassword">
+        <attr name="tp_textStartEndPadding" format="dimension" />
+        <attr name="tp_textTopBottomPadding" format="dimension" />
         <attr name="tp_textSize" format="dimension" />
         <attr name="tp_textColor" format="color" />
         <attr name="tp_hintColor" format="color" />

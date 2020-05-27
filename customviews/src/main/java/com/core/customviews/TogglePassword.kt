@@ -53,6 +53,18 @@ class TogglePassword : ConstraintLayout {
         }
 
         // EditText
+        array.getDimension(R.styleable.TogglePassword_tp_textStartEndPadding, -1f).let {
+            if (it > 0) {
+                passwordET.setPaddingRelative(it.toInt(), passwordET.paddingTop, it.toInt(), passwordET.paddingBottom)
+            }
+        }
+
+        array.getDimension(R.styleable.TogglePassword_tp_textTopBottomPadding, -1f).let {
+            if (it > 0) {
+                passwordET.setPaddingRelative(passwordET.paddingStart, it.toInt(), passwordET.paddingEnd, it.toInt())
+            }
+        }
+
         array.getDimension(R.styleable.TogglePassword_tp_textSize, -1f).let {
             if (it > 0) {
                 passwordET.setTextSize(TypedValue.COMPLEX_UNIT_PX, it)
