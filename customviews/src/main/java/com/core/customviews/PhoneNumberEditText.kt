@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.core.base.util.convertToPhoneNumberWithReplace
 import com.core.base.util.isSpace
 import timber.log.Timber
-import java.lang.IndexOutOfBoundsException
 
 class PhoneNumberEditText : AppCompatEditText {
     constructor(context: Context?) : super(context)
@@ -104,7 +103,8 @@ class PhoneNumberEditText : AppCompatEditText {
 
                 }
 
-                setSelection(selection)
+                if (text?.length ?: 0 > selection)
+                    setSelection(selection)
             }
         })
     }
