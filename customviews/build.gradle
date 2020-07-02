@@ -38,7 +38,7 @@ dependencies {
 
     implementation 'com.android.support:recyclerview-v7:29.0.0'
 
-    implementation 'com.github.g-libraries:base:1.2.0'
+    implementation 'com.github.g-libraries:base:1.2.10'
 
     //Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'

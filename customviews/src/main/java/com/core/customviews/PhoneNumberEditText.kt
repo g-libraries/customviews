@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.core.base.util.convertToPhoneNumberWithReplace
 import com.core.base.util.isSpace
 import timber.log.Timber
-import java.lang.IndexOutOfBoundsException
 
 class PhoneNumberEditText : AppCompatEditText {
     constructor(context: Context?) : super(context)
@@ -20,6 +19,7 @@ class PhoneNumberEditText : AppCompatEditText {
         defStyleAttr
     )
 
+    var str: CharSequence? = ""
     var isBackSpace = false
 
     init {
@@ -32,20 +32,11 @@ class PhoneNumberEditText : AppCompatEditText {
             var lengthBefore = 0
 
             override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                textBefore = s.toString()
-                lengthBefore = textBefore.length
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var selection = selectionStart
 
                 removeTextChangedListener(this)
 
-                var textToConvert = s
+                var textToConvert = str
 
                 if (textToConvert != null)
                     isBackSpace = textToConvert.length < lengthBefore
@@ -64,7 +55,7 @@ class PhoneNumberEditText : AppCompatEditText {
                     Timber.e(e)
                 }
 
-                var resultText = textToConvert.toString().convertToPhoneNumberWithReplace()
+                var resultText = textToConvert.toString().convertToPhoneNumberWithReplace("XXXX XX XXX XX XX")
 
                 try {
                     if (resultText.toCharArray()[5] == '0') {
@@ -104,7 +95,17 @@ class PhoneNumberEditText : AppCompatEditText {
 
                 }
 
-                setSelection(selection)
+                val maxSelection = text?.length ?: 0
+                setSelection(if (selection > maxSelection) maxSelection else selection)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                textBefore = s.toString()
+                lengthBefore = textBefore.length
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                str = s
             }
         })
     }
