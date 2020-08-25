@@ -8,14 +8,14 @@ data class ProfileItemData(
     val type: ProfileItemMode,
     val hint: String,
     var currentData: String?,
+    var validation: (String?) -> Boolean,
     var dropDown: Array<String> = arrayOf(),
     var isEditable: Boolean = true,
     var inputType: Int = InputType.TYPE_CLASS_TEXT,
-    var validation: (String?) -> Boolean,
-    var onClick: (String) -> Unit,
+    var onClick: (String) -> Unit = {},
     @DrawableRes
     var drawable: Int? = null,
-    var onDrawableClicked: () -> Unit,
-    var lineColorDefault: Int,
-    var lineColorError: Int
+    var onDrawableClicked: () -> Unit = {},
+    var lineColorDefault: Int = 0x000,
+    var lineColorError: Int = 0x000
 )
