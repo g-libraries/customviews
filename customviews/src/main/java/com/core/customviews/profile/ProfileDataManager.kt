@@ -4,10 +4,10 @@ import com.core.customviews.profile.view.ProfileEditModel
 import com.core.customviews.profile.view.ProfileItemData
 
 
-open class ProfileDataManager {
+abstract class ProfileDataManager {
 
-    lateinit var list: ArrayList<ProfileItem>
-    lateinit var dataList: ArrayList<ProfileItemData>
+    abstract var list: ArrayList<ProfileItem>
+    abstract var dataList: ArrayList<ProfileItemData>
 
     fun validate(): Boolean {
         for (profileItem in list) {
