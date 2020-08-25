@@ -43,6 +43,8 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     fun init(profileItemData: ProfileItemData) {
         this.profileItemData = profileItemData
 
+        View.inflate(context, R.layout.item_profile, this)
+
         editText = item_profile_et
         iconIV = item_profile_iv
 
@@ -63,7 +65,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             }
         })
 
-        if(!profileItemData.isEditable) {
+        if (!profileItemData.isEditable) {
             //TODO SHOW THAT FIELD IS NOT EDITABLE
         }
     }
