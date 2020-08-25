@@ -6,8 +6,8 @@ import com.core.customviews.profile.view.ProfileItemData
 
 abstract class ProfileDataManager {
 
-    abstract var list: ArrayList<ProfileItem>
-    abstract var dataList: ArrayList<ProfileItemData>
+    lateinit var list: ArrayList<ProfileItem>
+    lateinit var dataList: ArrayList<ProfileItemData>
 
     fun validate(): Boolean {
         for (profileItem in list) {
@@ -36,4 +36,5 @@ abstract class ProfileDataManager {
 
         return dataSet
     }
+
 }
