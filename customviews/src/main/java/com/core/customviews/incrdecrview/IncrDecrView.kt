@@ -140,6 +140,9 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
         } else {
             minLimitState()
             currnentNumber = minNumber
+
+            if (currnentNumber >= maxNumber)
+                maxLimitState()
         }
 
         countViewET.removeTextChangedListener(textWatcher)
