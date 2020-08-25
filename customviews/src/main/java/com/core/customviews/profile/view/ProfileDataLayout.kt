@@ -30,7 +30,7 @@ class ProfileDataLayout : LinearLayout, IProfileDataLayout {
         init(context)
     }
 
-    lateinit var profileItems: ArrayList<ProfileItemView>
+    val profileItems: ArrayList<ProfileItemView> = arrayListOf()
 
     private fun init(context: Context) {
         orientation = VERTICAL
