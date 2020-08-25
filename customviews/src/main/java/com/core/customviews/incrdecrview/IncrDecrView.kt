@@ -130,19 +130,17 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
 
     private fun numberLogic() {
         if (currnentNumber > minNumber) {
-            if (currnentNumber >= maxNumber) {
-                maxLimitState()
-                currnentNumber = maxNumber
-            } else {
-                notMaxLimitState()
-            }
             notMinLimitState()
         } else {
             minLimitState()
             currnentNumber = minNumber
+        }
 
-            if (currnentNumber >= maxNumber)
-                maxLimitState()
+        if (currnentNumber >= maxNumber) {
+            maxLimitState()
+            currnentNumber = maxNumber
+        } else {
+            notMaxLimitState()
         }
 
         countViewET.removeTextChangedListener(textWatcher)
