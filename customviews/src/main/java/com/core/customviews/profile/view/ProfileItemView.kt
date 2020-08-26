@@ -55,6 +55,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         setMode(profileItemData.type)
 
         profileItemData.drawable?.let {
+            iconIV.visibility = View.VISIBLE
             iconIV.setImageResource(it)
 
             iconIV.setOnClickListener {
