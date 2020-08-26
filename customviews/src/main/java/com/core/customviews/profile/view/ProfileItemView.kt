@@ -54,6 +54,14 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         editText.hint = profileItemData.hint
         setMode(profileItemData.type)
 
+        profileItemData.drawable?.let {
+            iconIV.setImageResource(it)
+
+            iconIV.setOnClickListener {
+                profileItemData.onDrawableClicked.invoke()
+            }
+        }
+
         editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
@@ -85,14 +93,6 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.setText(profileItemData.currentData)
 
                 profileItemData.onClick.invoke(editText.text.toString())
-
-                profileItemData.drawable?.let {
-                    iconIV.setImageResource(it)
-
-                    iconIV.setOnClickListener {
-                        profileItemData.onDrawableClicked.invoke()
-                    }
-                }
             }
             ProfileItemMode.SPINNER -> {
                 editText.inputType = InputType.TYPE_NULL
