@@ -139,7 +139,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         listPopupView.setAdapter(ArrayAdapter(context, listItemId, dataList) as ListAdapter?)
         listPopupView.anchorView = this
 
-        setOnClickListener { listPopupView.show() }
+        editText.setOnClickListener { listPopupView.show() }
 
         listPopupView.setOnItemClickListener { _, _, position, _ ->
             editText.setText(dataList[position])
