@@ -25,25 +25,28 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     var selected = 0
     lateinit var dataList: Array<String>
     lateinit var listPopupView: ListPopupWindow
+    var itemLayout: Int = 0
 
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    )
 
     lateinit var profileItemData: ProfileItemData
     lateinit var editText: AppCompatEditText
     lateinit var iconIV: AppCompatImageView
 
-    fun init(profileItemData: ProfileItemData) {
+    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int) : super(
+        context
+    ) {
+        init(profileItemData, itemLayout)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+
+    fun init(profileItemData: ProfileItemData, itemLayout: Int) {
         this.profileItemData = profileItemData
 
-        View.inflate(context, R.layout.item_profile, this)
+        if (itemLayout != 0)
+            View.inflate(context, itemLayout, this)
+        else
+            View.inflate(context, R.layout.item_profile, this)
 
         editText = item_profile_et
         iconIV = item_profile_iv

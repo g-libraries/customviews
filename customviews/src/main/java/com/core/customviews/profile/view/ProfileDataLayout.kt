@@ -3,37 +3,26 @@ package com.core.customviews.profile.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import androidx.core.content.res.getResourceIdOrThrow
+import com.core.customviews.R
 
-class ProfileDataLayout : LinearLayout, IProfileDataLayout {
-    constructor(context: Context) : super(context) {
-        init(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init(context)
-    }
-
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init(context)
-    }
-
+class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
+    IProfileDataLayout {
     val profileItems: ArrayList<ProfileItemView> = arrayListOf()
+    var itemLayout: Int = 0
 
-    private fun init(context: Context) {
+    private fun init(context: Context, attrs: AttributeSet) {
         orientation = VERTICAL
+
+        val a = context.obtainStyledAttributes(attrs, R.styleable.ProfileDataLayout)
+
+
+        try {
+            itemLayout = a.getResourceIdOrThrow(R.styleable.ProfileDataLayout_item_layout)
+        } finally {
+            a.recycle()
+        }
+
     }
 
     override fun setInitData(
@@ -41,12 +30,14 @@ class ProfileDataLayout : LinearLayout, IProfileDataLayout {
         profileEditMode: ProfileEditModel
     ) {
         for (item in profileDataList) {
-            val viewItem = ProfileItemView(context)
+            val viewItem = ProfileItemView(context, item, itemLayout)
 
-            viewItem.init(item)
             addView(viewItem)
-
             profileItems.add(viewItem)
         }
+    }
+
+    init {
+        init(context, attrs)
     }
 }
