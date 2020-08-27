@@ -31,11 +31,14 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var profileItemData: ProfileItemData
     lateinit var editText: AppCompatEditText
     lateinit var iconIV: AppCompatImageView
+    lateinit var validateListener: ValidateListener
 
-    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int) : super(
+    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int, validateListener: ValidateListener) : super(
         context
     ) {
         init(profileItemData, itemLayout)
+
+        this.validateListener = validateListener
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -124,6 +127,8 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         }
 
         setBackgroundTintList(this, colorStateList)
+
+        validateListener.onValidated(isOk)
 
         return isOk
     }
