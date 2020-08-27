@@ -33,7 +33,12 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var iconIV: AppCompatImageView
     lateinit var changedListener: OnChangedListener
 
-    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int, changedListener: OnChangedListener) : super(
+    constructor(
+        context: Context?,
+        profileItemData: ProfileItemData,
+        itemLayout: Int,
+        changedListener: OnChangedListener
+    ) : super(
         context
     ) {
         init(profileItemData, itemLayout)
@@ -125,7 +130,10 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         val colorStateList = if (isOk) {
             ColorStateList.valueOf(profileItemData.lineColorDefault)
         } else {
-            ColorStateList.valueOf(profileItemData.lineColorError)
+            if (editText.text.toString().isNotEmpty())
+                ColorStateList.valueOf(profileItemData.lineColorError)
+            else
+                ColorStateList.valueOf(profileItemData.lineColorDefault)
         }
 
         setBackgroundTintList(editText, colorStateList)
