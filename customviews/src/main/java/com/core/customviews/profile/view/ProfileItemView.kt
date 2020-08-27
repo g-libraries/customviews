@@ -128,7 +128,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             ColorStateList.valueOf(profileItemData.lineColorError)
         }
 
-        setBackgroundTintList(this, colorStateList)
+        setBackgroundTintList(editText, colorStateList)
 
         return isOk
     }
