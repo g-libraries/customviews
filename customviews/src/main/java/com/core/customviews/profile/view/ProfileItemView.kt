@@ -31,14 +31,14 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var profileItemData: ProfileItemData
     lateinit var editText: AppCompatEditText
     lateinit var iconIV: AppCompatImageView
-    lateinit var validateListener: ValidateListener
+    lateinit var changedListener: OnChangedListener
 
-    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int, validateListener: ValidateListener) : super(
+    constructor(context: Context?, profileItemData: ProfileItemData, itemLayout: Int, changedListener: OnChangedListener) : super(
         context
     ) {
         init(profileItemData, itemLayout)
 
-        this.validateListener = validateListener
+        this.changedListener = changedListener
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -77,6 +77,8 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 validate()
+
+                changedListener.onChanged()
             }
         })
 
@@ -127,8 +129,6 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         }
 
         setBackgroundTintList(this, colorStateList)
-
-        validateListener.onValidated(isOk)
 
         return isOk
     }

@@ -10,7 +10,7 @@ class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(co
     IProfileDataLayout {
     val profileItems: ArrayList<ProfileItemView> = arrayListOf()
     var itemLayout: Int = 0
-    lateinit var layoutListener: ValidateListener
+    lateinit var chagnedListener: OnChangedListener
 
     private fun init(context: Context, attrs: AttributeSet) {
         orientation = VERTICAL
@@ -29,12 +29,12 @@ class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(co
     override fun setInitData(
         profileDataList: ArrayList<ProfileItemData>,
         profileEditMode: ProfileEditModel,
-        listener: ValidateListener
+        listener: OnChangedListener
     ) {
-        layoutListener = listener
+        chagnedListener = listener
 
         for (item in profileDataList) {
-            val viewItem = ProfileItemView(context, item, itemLayout, layoutListener)
+            val viewItem = ProfileItemView(context, item, itemLayout, chagnedListener)
 
             addView(viewItem)
             profileItems.add(viewItem)
