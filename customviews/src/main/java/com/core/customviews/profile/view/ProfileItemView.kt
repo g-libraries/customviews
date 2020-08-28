@@ -67,7 +67,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             iconIV.setImageResource(it)
 
             iconIV.setOnClickListener {
-                profileItemData.onDrawableClicked.invoke()
+                profileItemData.onDrawableClicked.invoke(iconIV)
             }
         }
 
