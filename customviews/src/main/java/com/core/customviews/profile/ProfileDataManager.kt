@@ -27,11 +27,11 @@ abstract class ProfileDataManager {
         return true
     }
 
-    fun getDataSet(): ArrayList<String?> {
-        val dataSet = arrayListOf<String?>()
+    fun getDataSet(): ArrayList<ProfileItemData?> {
+        val dataSet = arrayListOf<ProfileItemData?>()
 
         for (item in list) {
-            dataSet.add(item.getData().currentData)
+            dataSet.add(item.getData())
         }
 
         return dataSet
