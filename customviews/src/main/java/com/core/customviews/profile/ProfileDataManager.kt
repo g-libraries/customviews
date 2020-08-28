@@ -20,7 +20,7 @@ abstract class ProfileDataManager {
 
     fun validateAndCompare(): Boolean {
         for ((index, item) in list.withIndex()) {
-            if (item.getData() != dataList[index].currentData)
+            if (item.getData().currentData != dataList[index].currentData)
                 return false
         }
 
@@ -31,7 +31,7 @@ abstract class ProfileDataManager {
         val dataSet = arrayListOf<String?>()
 
         for (item in list) {
-            dataSet.add(item.getData())
+            dataSet.add(item.getData().currentData)
         }
 
         return dataSet
