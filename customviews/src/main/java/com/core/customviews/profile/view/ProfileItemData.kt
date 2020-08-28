@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes
 
 data class ProfileItemData(
     val type: ProfileItemMode,
+    val dataType: Int,
     val hint: String,
     var currentData: String?,
     var validation: (String?) -> Boolean,

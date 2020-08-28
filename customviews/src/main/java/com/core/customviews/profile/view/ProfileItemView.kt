@@ -141,8 +141,9 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         return isOk
     }
 
-    override fun getData(): String? {
-        return editText.text?.toString()
+    override fun getData(): ProfileItemData {
+        profileItemData.currentData = editText.text.toString()
+        return profileItemData
     }
 
     private fun setDropdown(dataList: Array<String>, listItemId: Int, listener: (Int) -> Unit) {
