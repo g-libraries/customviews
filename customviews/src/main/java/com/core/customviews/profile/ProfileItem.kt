@@ -4,5 +4,6 @@ import com.core.customviews.profile.view.ProfileItemData
 
 interface ProfileItem {
     fun validate(): Boolean
-    fun getData(): ProfileItemData
+    fun getItemData(): ProfileItemData
+    fun getData(): String?
 }

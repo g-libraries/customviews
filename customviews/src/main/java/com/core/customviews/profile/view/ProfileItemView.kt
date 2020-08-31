@@ -141,8 +141,11 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         return isOk
     }
 
-    override fun getData(): ProfileItemData {
-        profileItemData.currentData = editText.text.toString()
+    override fun getData(): String {
+        return editText.text.toString()
+    }
+
+    override fun getItemData(): ProfileItemData {
         return profileItemData
     }
 
