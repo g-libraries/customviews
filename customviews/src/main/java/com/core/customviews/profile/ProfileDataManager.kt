@@ -8,7 +8,7 @@ abstract class ProfileDataManager {
 
     lateinit var list: ArrayList<ProfileItem>
     lateinit var profileItemDataList: ArrayList<ProfileItemData>
-    lateinit var dataList: ArrayList<String>
+    lateinit var dataList: ArrayList<String?>
 
     fun validate(): Boolean {
         for (profileItem in list) {
