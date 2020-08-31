@@ -30,4 +30,16 @@
         <attr name="item_layout" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="SearchLayout">
+        <attr name="sl_icon_searchInactive" format="reference" />
+        <attr name="sl_icon_searchActive" format="reference" />
+        <attr name="sl_icon_clearSearch" format="reference" />
+        <attr name="sl_deleteUnderline" format="boolean" />
+        <attr name="sl_hint" format="string" />
+        <attr name="sl_textSize" format="dimension" />
+        <attr name="sl_textColorHint" format="color" />
+        <attr name="sl_textColor" format="color" />
+        <attr name="sl_background" format="reference" />
+    </declare-styleable>
+
 </resources>
