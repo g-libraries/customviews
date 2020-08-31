@@ -109,14 +109,19 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
 
                 if (!profileItemData.dropDown.isNullOrEmpty()) {
-                    setDropdown(profileItemData.dropDown, R.layout.item_dropdown) {
-                        editText.setText(profileItemData.dropDown[it])
+                    if (profileItemData.dropDown.size < 2)
+                        visibility = View.GONE
+                    else {
+                        setDropdown(profileItemData.dropDown, R.layout.item_dropdown) {
+                            editText.setText(profileItemData.dropDown[it])
+                        }
                     }
 
                     val current =
                         profileItemData.dropDown.find { item -> item == profileItemData.currentData }
 
                     editText.setText(current)
+
                 } else {
                     Timber.w("profileItemData.dropDown is empty or null")
                 }
