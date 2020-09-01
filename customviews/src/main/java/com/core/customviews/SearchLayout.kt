@@ -5,7 +5,9 @@ import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
@@ -121,7 +123,7 @@ class SearchLayout : ConstraintLayout, View.OnFocusChangeListener {
         searchET.hint = hintText
         searchET.setTextColor(searchTextColor)
         searchET.setHintTextColor(searchHintColor)
-        searchET.textSize = searchTextSize
+        searchET.setTextSize(TypedValue.COMPLEX_UNIT_PX, searchTextSize)
 
         searchET.addTextChangedListener(insideTextWatcher)
 
