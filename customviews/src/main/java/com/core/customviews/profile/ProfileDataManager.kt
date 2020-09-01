@@ -21,7 +21,7 @@ abstract class ProfileDataManager {
 
     fun validateAndCompare(): Boolean {
         for ((index, item) in list.withIndex()) {
-            if (item.validate() && item.getData() != dataList[index])
+            if (!item.validate() || item.getData() == dataList[index])
                 return false
         }
 
