@@ -103,9 +103,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             ProfileItemMode.TEXT -> {
                 editText.inputType = profileItemData.inputType
 
-                editText.applyWithDisabledTextWatcher(textWatcher) {
-                    editText.setText(profileItemData.currentData)
-                }
+                editText.setText(profileItemData.currentData)
             }
             ProfileItemMode.NOT_TEXT -> {
                 editText.inputType = InputType.TYPE_NULL
