@@ -60,6 +60,12 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         iconIV = item_profile_iv
 
         editText.hint = profileItemData.hint
+
+        if (!profileItemData.isEditable) {
+            editText.isEnabled = false
+            editText.setTextColor(editText.hintTextColors)
+        }
+
         setMode(profileItemData.type)
 
         profileItemData.drawable?.let {
@@ -86,10 +92,6 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 changedListener.onChanged()
             }
         })
-
-        if (!profileItemData.isEditable) {
-            //TODO SHOW THAT FIELD IS NOT EDITABLE
-        }
     }
 
     private fun setMode(mode: ProfileItemMode) {
