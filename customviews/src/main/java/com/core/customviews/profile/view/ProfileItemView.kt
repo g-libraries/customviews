@@ -103,7 +103,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
                 editText.setText(profileItemData.currentData)
 
-                profileItemData.onClick.invoke(editText.text.toString())
+                profileItemData.onClick.invoke(editText.text.toString(), editText)
             }
             ProfileItemMode.SPINNER -> {
                 editText.inputType = InputType.TYPE_NULL
