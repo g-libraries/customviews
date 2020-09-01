@@ -109,8 +109,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
                 editText.setText(profileItemData.currentData)
 
-                isClickable = true
-                this@ProfileItemView.setOnClickListener {
+                editText.setOnClickListener {
                     profileItemData.onClick.invoke(editText.text.toString(), editText)
                 }
             }
@@ -170,6 +169,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         listPopupView.setAdapter(ArrayAdapter(context, listItemId, dataList) as ListAdapter?)
         listPopupView.anchorView = this
 
+        isClickable = true
         this@ProfileItemView.setOnClickListener { listPopupView.show() }
 
         listPopupView.setOnItemClickListener { _, _, position, _ ->
