@@ -32,6 +32,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var editText: AppCompatEditText
     lateinit var iconIV: AppCompatImageView
     lateinit var changedListener: OnChangedListener
+    lateinit var textWatcher: TextWatcher
 
     constructor(
         context: Context?,
@@ -61,12 +62,13 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
 
         editText.hint = profileItemData.hint
 
+        setMode(profileItemData.type)
+
         if (!profileItemData.isEditable) {
             editText.isEnabled = false
             editText.setTextColor(editText.hintTextColors)
         }
 
-        setMode(profileItemData.type)
 
         profileItemData.drawable?.let {
             iconIV.visibility = View.VISIBLE
@@ -77,7 +79,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             }
         }
 
-        editText.addTextChangedListener(object : TextWatcher {
+        textWatcher = object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -91,7 +93,9 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
 
                 changedListener.onChanged()
             }
-        })
+        }
+
+        editText.addTextChangedListener(textWatcher)
     }
 
     private fun setMode(mode: ProfileItemMode) {
@@ -99,7 +103,9 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             ProfileItemMode.TEXT -> {
                 editText.inputType = profileItemData.inputType
 
-                editText.setText(profileItemData.currentData)
+                editText.applyWithDisabledTextWatcher(textWatcher) {
+                    editText.setText(profileItemData.currentData)
+                }
             }
             ProfileItemMode.NOT_TEXT -> {
                 editText.inputType = InputType.TYPE_NULL
@@ -186,3 +192,4 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         }
     }
 }
+
