@@ -3,7 +3,9 @@ package com.core.customviews.profile.view
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.view.View
+import android.widget.EditText
 import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatEditText
 
 data class ProfileItemData(
     val type: ProfileItemMode,
@@ -14,7 +16,7 @@ data class ProfileItemData(
     var dropDown: Array<String> = arrayOf(),
     var isEditable: Boolean = true,
     var inputType: Int = InputType.TYPE_CLASS_TEXT,
-    var onClick: (String) -> Unit = {},
+    var onClick: (String, AppCompatEditText) -> Unit = { _, _ -> },
     @DrawableRes
     var drawable: Int? = null,
     var onDrawableClicked: (View) -> Unit = {},

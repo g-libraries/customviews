@@ -32,6 +32,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var editText: AppCompatEditText
     lateinit var iconIV: AppCompatImageView
     lateinit var changedListener: OnChangedListener
+    lateinit var textWatcher: TextWatcher
 
     constructor(
         context: Context?,
@@ -60,7 +61,14 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         iconIV = item_profile_iv
 
         editText.hint = profileItemData.hint
+
         setMode(profileItemData.type)
+
+        if (!profileItemData.isEditable) {
+            editText.isEnabled = false
+            editText.setTextColor(editText.hintTextColors)
+        }
+
 
         profileItemData.drawable?.let {
             iconIV.visibility = View.VISIBLE
@@ -71,7 +79,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
             }
         }
 
-        editText.addTextChangedListener(object : TextWatcher {
+        textWatcher = object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
             }
@@ -85,11 +93,9 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
 
                 changedListener.onChanged()
             }
-        })
-
-        if (!profileItemData.isEditable) {
-            //TODO SHOW THAT FIELD IS NOT EDITABLE
         }
+
+        editText.addTextChangedListener(textWatcher)
     }
 
     private fun setMode(mode: ProfileItemMode) {
@@ -103,20 +109,27 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
                 editText.setText(profileItemData.currentData)
 
-                profileItemData.onClick.invoke(editText.text.toString())
+                editText.setOnClickListener {
+                    profileItemData.onClick.invoke(editText.text.toString(), editText)
+                }
             }
             ProfileItemMode.SPINNER -> {
                 editText.inputType = InputType.TYPE_NULL
 
                 if (!profileItemData.dropDown.isNullOrEmpty()) {
-                    setDropdown(profileItemData.dropDown, R.layout.item_dropdown) {
-                        editText.setText(profileItemData.dropDown[it])
+                    if (profileItemData.dropDown.size < 2)
+                        visibility = View.GONE
+                    else {
+                        setDropdown(profileItemData.dropDown, R.layout.item_dropdown) {
+                            editText.setText(profileItemData.dropDown[it])
+                        }
                     }
 
                     val current =
                         profileItemData.dropDown.find { item -> item == profileItemData.currentData }
 
                     editText.setText(current)
+
                 } else {
                     Timber.w("profileItemData.dropDown is empty or null")
                 }
@@ -177,3 +190,4 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         }
     }
 }
+
