@@ -57,8 +57,6 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         else
             View.inflate(context, R.layout.item_profile, this)
 
-        isClickable = false
-
         editText = item_profile_et
         iconIV = item_profile_iv
 
@@ -111,7 +109,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
                 editText.setText(profileItemData.currentData)
 
-                editText.setOnClickListener {
+                this@ProfileItemView.setOnClickListener {
                     profileItemData.onClick.invoke(editText.text.toString(), editText)
                 }
             }
@@ -171,7 +169,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         listPopupView.setAdapter(ArrayAdapter(context, listItemId, dataList) as ListAdapter?)
         listPopupView.anchorView = this
 
-        editText.setOnClickListener { listPopupView.show() }
+        this@ProfileItemView.setOnClickListener { listPopupView.show() }
 
         listPopupView.setOnItemClickListener { _, _, position, _ ->
             editText.setText(dataList[position])
