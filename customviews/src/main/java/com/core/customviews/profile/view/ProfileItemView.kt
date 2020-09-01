@@ -109,6 +109,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
                 editText.setText(profileItemData.currentData)
 
+                isClickable = true
                 this@ProfileItemView.setOnClickListener {
                     profileItemData.onClick.invoke(editText.text.toString(), editText)
                 }
