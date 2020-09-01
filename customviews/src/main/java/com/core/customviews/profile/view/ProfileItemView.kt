@@ -57,6 +57,8 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         else
             View.inflate(context, R.layout.item_profile, this)
 
+        isClickable = false
+
         editText = item_profile_et
         iconIV = item_profile_iv
 
