@@ -20,12 +20,18 @@ abstract class ProfileDataManager {
     }
 
     fun validateAndCompare(): Boolean {
+        var changed = false
+        var validated = true
+
         for ((index, item) in list.withIndex()) {
-            if (!item.validate() && item.getData() != dataList[index])
-                return false
+            if (!item.validate())
+                validated = false
+
+            if (item.getData() != dataList[index])
+                changed = true
         }
 
-        return true
+        return validated && changed
     }
 
     fun getProfileItemDataSet(): ArrayList<ProfileItemData?> {
