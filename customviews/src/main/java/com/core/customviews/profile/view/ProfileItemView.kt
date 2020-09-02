@@ -170,7 +170,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         listPopupView.anchorView = this
 
         isClickable = true
-        this@ProfileItemView.setOnClickListener { listPopupView.show() }
+        editText.setOnClickListener { listPopupView.show() }
 
         listPopupView.setOnItemClickListener { _, _, position, _ ->
             editText.setText(dataList[position])
