@@ -1,5 +1,6 @@
 package com.core.customviews.profile
 
+import com.core.customviews.profile.view.ProfileDataLayout
 import com.core.customviews.profile.view.ProfileEditModel
 import com.core.customviews.profile.view.ProfileItemData
 
@@ -7,8 +8,13 @@ import com.core.customviews.profile.view.ProfileItemData
 abstract class ProfileDataManager {
 
     lateinit var list: ArrayList<ProfileItem>
-    lateinit var profileItemDataList: ArrayList<ProfileItemData>
+    var profileItemDataList: ArrayList<ProfileItemData> = arrayListOf()
     lateinit var dataList: ArrayList<String?>
+
+    fun setLayout(profileDataLayout: ProfileDataLayout) {
+        list = profileDataLayout.profileItems as java.util.ArrayList<ProfileItem>
+        dataList = getDataSet()
+    }
 
     fun validate(): Boolean {
         for (profileItem in list) {
@@ -63,5 +69,4 @@ abstract class ProfileDataManager {
 
         return dataSet
     }
-
 }

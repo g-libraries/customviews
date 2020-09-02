@@ -6,6 +6,8 @@ interface IProfileDataLayout {
         profileEditMode: ProfileEditModel,
         listener: OnChangedListener
     )
+
+    fun udpate(profileDataList: ArrayList<ProfileItemData>)
 }
 
 interface ValidateListener {
