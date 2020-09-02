@@ -1,5 +1,7 @@
 package com.core.customviews.profile.view
 
+import com.core.customviews.profile.ProfileItem
+
 interface IProfileDataLayout {
     fun setInitData(
         profileDataList: ArrayList<ProfileItemData>,
@@ -8,6 +10,8 @@ interface IProfileDataLayout {
     )
 
     fun udpate(profileDataList: ArrayList<ProfileItemData>)
+
+    fun getItems(): ArrayList<ProfileItem>
 }
 
 interface ValidateListener {
