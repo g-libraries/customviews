@@ -34,6 +34,7 @@ class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(co
     ) {
         removeAllViews()
         chagnedListener = listener
+        profileItems.clear()
 
         for (item in profileDataList) {
             val viewItem = ProfileItemView(context, item, itemLayout, chagnedListener)
@@ -45,6 +46,7 @@ class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(co
 
     override fun udpate(profileDataList: ArrayList<ProfileItemData>) {
         removeAllViews()
+        profileItems.clear()
 
         for (item in profileDataList) {
             val viewItem = ProfileItemView(context, item, itemLayout, chagnedListener)
