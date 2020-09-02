@@ -11,8 +11,8 @@ abstract class ProfileDataManager {
     var profileItemDataList: ArrayList<ProfileItemData> = arrayListOf()
     lateinit var dataList: ArrayList<String?>
 
-    fun setLayout(profileDataLayout: ProfileDataLayout) {
-        list = profileDataLayout.profileItems as java.util.ArrayList<ProfileItem>
+    fun setLayout(list: ArrayList<ProfileItem>) {
+        this.list = list
         dataList = getDataSet()
     }
 
