@@ -7,10 +7,7 @@ import androidx.core.content.res.getResourceIdOrThrow
 import com.core.customviews.R
 import com.core.customviews.profile.ProfileItem
 
-class
-
-
-    (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
+class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
     IProfileDataLayout {
     val profileItems: ArrayList<ProfileItemView> = arrayListOf()
     var itemLayout: Int = 0
