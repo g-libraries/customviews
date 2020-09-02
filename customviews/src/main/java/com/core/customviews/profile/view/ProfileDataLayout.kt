@@ -5,8 +5,12 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.core.content.res.getResourceIdOrThrow
 import com.core.customviews.R
+import com.core.customviews.profile.ProfileItem
 
-class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
+class
+
+
+    (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
     IProfileDataLayout {
     val profileItems: ArrayList<ProfileItemView> = arrayListOf()
     var itemLayout: Int = 0
@@ -51,6 +55,10 @@ class ProfileDataLayout(context: Context, attrs: AttributeSet) : LinearLayout(co
             addView(viewItem)
             profileItems.add(viewItem)
         }
+    }
+
+    override fun getItems(): ArrayList<ProfileItem> {
+        return profileItems as ArrayList<ProfileItem>
     }
 
     init {
