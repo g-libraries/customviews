@@ -86,7 +86,7 @@ class ScannerViewHelper {
         return fadeIn
     }
 
-    private fun startAnimation() {
+    fun startAnimation() {
         val set = AnimatorSet()
         val fade = AnimatorSet()
         fade.playSequentially(
