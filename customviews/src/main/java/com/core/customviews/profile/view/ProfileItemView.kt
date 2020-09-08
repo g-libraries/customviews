@@ -110,7 +110,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.setText(profileItemData.currentData)
 
                 editText.setOnClickListener {
-                    profileItemData.onClick.invoke(editText.text.toString(), editText)
+                    profileItemData.onClick.invoke(editText.text.toString(), editText, iconIV)
                 }
             }
             ProfileItemMode.SPINNER -> {

@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.widget.ImageViewCompat
 
 data class ProfileItemData(
     val type: ProfileItemMode,
@@ -16,7 +18,7 @@ data class ProfileItemData(
     var dropDown: Array<String> = arrayOf(),
     var isEditable: Boolean = true,
     var inputType: Int = InputType.TYPE_CLASS_TEXT,
-    var onClick: (String, AppCompatEditText) -> Unit = { _, _ -> },
+    var onClick: (String, AppCompatEditText, AppCompatImageView) -> Unit = { _, _, _ -> },
     @DrawableRes
     var drawable: Int? = null,
     var onDrawableClicked: (View) -> Unit = {},
