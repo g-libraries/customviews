@@ -57,8 +57,8 @@ class ScannerViewHelper {
                 scannerView.rotation = 180f
             }
             doOnEnd {
-                scannerView.translationY = 0f
                 scannerView.alpha = 0f
+                scannerView.translationY = 0f
             }
         }
 

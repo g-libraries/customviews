@@ -129,7 +129,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                         profileItemData.dropDown.find { item -> item == profileItemData.currentData }
 
                     editText.setText(current)
-
+                    editText.isFocusable = false
                 } else {
                     Timber.w("profileItemData.dropDown is empty or null")
                 }
