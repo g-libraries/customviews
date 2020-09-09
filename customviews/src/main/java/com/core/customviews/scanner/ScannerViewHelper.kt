@@ -58,6 +58,7 @@ class ScannerViewHelper {
             }
             doOnEnd {
                 scannerView.translationY = 0f
+                scannerView.alpha = 0f
             }
         }
 
