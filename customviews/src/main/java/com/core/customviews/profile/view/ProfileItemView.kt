@@ -112,6 +112,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.setOnClickListener {
                     profileItemData.onClick.invoke(editText.text.toString(), editText, iconIV)
                 }
+                editText.isFocusable = false
             }
             ProfileItemMode.SPINNER -> {
                 editText.inputType = InputType.TYPE_NULL
