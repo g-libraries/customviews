@@ -24,51 +24,25 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogCallback? = null) :
+class SlideDatePickerDialog private constructor(
+    private var startDate: Calendar = Calendar.getInstance().apply {
+        this.set(Calendar.YEAR, this.get(Calendar.YEAR) - 100)
+        this.set(Calendar.MONTH, 0)
+        this.set(Calendar.DAY_OF_MONTH, 1)
+    },
+    private var endDate: Calendar = Calendar.getInstance(),
+    private var preselectedDate: Calendar = Calendar.getInstance(),
+    private var yearModifier: Int = 0,
+    private var locale: Locale = Locale.US,
+    private var themeColor: Int = -1,
+    private var headerTextColor: Int = -1,
+    private var headerDateFormat: String = "EEE, MMM dd",
+    private var showYear: Boolean = true,
+    private var cancelText: String = "",
+    private var confirmText: String = "",
+    private var callback: SlideDatePickerDialogCallback? = null
+) :
     DialogFragment() {
-
-    companion object {
-        fun newInstance(
-            startDate: Calendar? = null,
-            endDate: Calendar? = null,
-            preselectedDate: Calendar? = null,
-            yearModifier: Int = 0,
-            locale: Locale? = null,
-            @ColorInt themeColor: Int = -1,
-            @ColorInt headerTextColor: Int = -1,
-            headerDateFormat: String? = null,
-            showYear: Boolean = true,
-            cancelText: String = "",
-            confirmText: String = "",
-            callback: SlideDatePickerDialogCallback? = null
-        ) = SlideDatePickerDialog(callback).apply {
-            arguments = Bundle().apply {
-                startDate?.let { putSerializable(EXTRA_START_DATE, it) }
-                endDate?.let { putSerializable(EXTRA_END_DATE, it) }
-                preselectedDate?.let { putSerializable(EXTRA_PRESELECTED_DATE, it) }
-                putInt(EXTRA_YEAR_MODIFIER, yearModifier)
-                locale?.let { putSerializable(EXTRA_LOCALE, it) }
-                putInt(EXTRA_THEME_COLOR, themeColor)
-                putInt(EXTRA_HEADER_TEXT_COLOR, headerTextColor)
-                headerDateFormat?.let { putString(EXTRA_HEADER_DATE_FORMAT, it) }
-                putBoolean(EXTRA_SHOW_YEAR, showYear)
-                putString(EXTRA_CANCEL_TEXT, cancelText)
-                putString(EXTRA_CONFIRM_TEXT, confirmText)
-            }
-        }
-
-        const val EXTRA_START_DATE = "extra-start-date"
-        const val EXTRA_END_DATE = "extra-end-date"
-        const val EXTRA_PRESELECTED_DATE = "extra-preselected-date"
-        const val EXTRA_YEAR_MODIFIER = "extra-year-modifier"
-        const val EXTRA_LOCALE = "extra-locale"
-        const val EXTRA_THEME_COLOR = "extra-theme-color"
-        const val EXTRA_HEADER_TEXT_COLOR = "extra-header-text-color"
-        const val EXTRA_HEADER_DATE_FORMAT = "extra-header-date-format"
-        const val EXTRA_SHOW_YEAR = "extra-show-year"
-        const val EXTRA_CANCEL_TEXT = "extra-cancel-text"
-        const val EXTRA_CONFIRM_TEXT = "extra-confirm-text"
-    }
 
     private lateinit var viewModel: SlideDatePickerDialogViewModel
 
@@ -92,29 +66,9 @@ class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogC
     lateinit var monthLayoutManager: LinearLayoutManager
     lateinit var yearLayoutManager: LinearLayoutManager
 
-    private var callback: SlideDatePickerDialogCallback? = callback
-
     private var yearLastScrollState = RecyclerView.SCROLL_STATE_SETTLING
     private var monthLastScrollState = RecyclerView.SCROLL_STATE_SETTLING
     private var dayLastScrollState = RecyclerView.SCROLL_STATE_SETTLING
-
-    private var startDate: Calendar = Calendar.getInstance().apply {
-        this.set(Calendar.YEAR, this.get(Calendar.YEAR) - 100)
-        this.set(Calendar.MONTH, 0)
-        this.set(Calendar.DAY_OF_MONTH, 1)
-    }
-    private var endDate: Calendar = Calendar.getInstance()
-    private var preselectedDate: Calendar = Calendar.getInstance()
-    private var yearModifier: Int = 0
-    private var locale: Locale = Locale.US
-    @ColorInt
-    private var themeColor: Int = -1
-    @ColorInt
-    private var headerTextColor: Int = -1
-    private var headerTextFormat: String = "EEE, MMM dd"
-    private var showYear = true
-    private var cancelText = ""
-    private var confirmText = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -189,8 +143,8 @@ class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogC
             tvYear.visibility = View.GONE
         }
 
-        if (headerTextFormat.isEmpty()) {
-            headerTextFormat = "EEE, MMM dd"
+        if (headerDateFormat.isEmpty()) {
+            headerDateFormat = "EEE, MMM dd"
         }
 
         if (cancelText.isNotBlank()) {
@@ -254,7 +208,7 @@ class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogC
         })
 
         viewModel.getCalendar().observe(this, Observer {
-            tvDate.text = SimpleDateFormat(headerTextFormat, locale).format(it.time)
+            tvDate.text = SimpleDateFormat(headerDateFormat, locale).format(it.time)
         })
 
         viewModel.getCurrentYear().observe(this, Observer {
@@ -316,20 +270,34 @@ class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogC
     }
 
     class Builder() {
-        private var startDate: Calendar? = null
-        private var endDate: Calendar? = null
-        private var preselectedDate: Calendar? = null
+        private var startDate: Calendar = Calendar.getInstance().apply {
+            this.set(Calendar.YEAR, this.get(Calendar.YEAR) - 100)
+            this.set(Calendar.MONTH, 0)
+            this.set(Calendar.DAY_OF_MONTH, 1)
+        }
+        private var endDate: Calendar = Calendar.getInstance()
+        private var preselectedDate: Calendar = Calendar.getInstance()
         private var yearModifier: Int = 0
-        private var locale: Locale? = null
+        private var locale: Locale = Locale.US
         @ColorInt
         private var themeColor: Int = -1
         @ColorInt
         private var headerTextColor: Int = -1
-        private var headerDateFormat: String? = null
+        private var itemTextColor: Int = -1
+        private var itemTextBg: Int = -1
+        private var headerDateFormat: String = "EEE, MMM dd"
         private var showYear = true
         private var cancelText = ""
         private var confirmText = ""
         private var callback: SlideDatePickerDialogCallback? = null
+
+        fun setItemTextColor(itemTextColor: Int) {
+            this.itemTextColor = itemTextColor
+        }
+
+        fun setItemTextBg(itemTextBg: Int) {
+            this.itemTextBg = itemTextBg
+        }
 
         fun setStartDate(startDate: Calendar): Builder = this.apply {
             this.startDate = startDate
@@ -379,7 +347,7 @@ class SlideDatePickerDialog private constructor(callback: SlideDatePickerDialogC
             this.confirmText = confirmText
         }
 
-        fun build(): SlideDatePickerDialog = SlideDatePickerDialog.newInstance(
+        fun build(): SlideDatePickerDialog = SlideDatePickerDialog(
             startDate,
             endDate,
             preselectedDate,
