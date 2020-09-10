@@ -291,11 +291,11 @@ class SlideDatePickerDialog private constructor(
         private var confirmText = ""
         private var callback: SlideDatePickerDialogCallback? = null
 
-        fun setItemTextColor(itemTextColor: Int) {
+        fun setItemTextColor(itemTextColor: Int): Builder = this.apply {
             this.itemTextColor = itemTextColor
         }
 
-        fun setItemTextBg(itemTextBg: Int) {
+        fun setItemTextBg(itemTextBg: Int): Builder = this.apply {
             this.itemTextBg = itemTextBg
         }
 
