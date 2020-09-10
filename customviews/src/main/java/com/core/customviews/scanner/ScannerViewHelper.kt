@@ -32,6 +32,7 @@ class ScannerViewHelper {
             doOnStart {
                 scannerView.rotation = 0f
                 scannerView.alpha = 0f
+                scannerView.translationY = 0f
             }
             doOnEnd {
                 scannerView.translationY = (-qrIV.height.toFloat() - scannerView.height.toFloat())
@@ -58,7 +59,6 @@ class ScannerViewHelper {
             }
             doOnEnd {
                 scannerView.alpha = 0f
-                scannerView.translationY = 0f
             }
         }
 

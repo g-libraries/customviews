@@ -132,6 +132,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                     editText.setText(current)
                     editText.isFocusable = false
                 } else {
+                    visibility = View.GONE
                     Timber.w("profileItemData.dropDown is empty or null")
                 }
             }
