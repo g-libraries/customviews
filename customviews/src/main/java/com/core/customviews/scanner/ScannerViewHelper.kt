@@ -33,7 +33,7 @@ class ScannerViewHelper {
             doOnStart {
                 scannerView.rotation = 0f
                 scannerView.alpha = 0f
-                scannerView.translationY = 0f + scannerView.height.toFloat()
+                scannerView.translationY = 0f
             }
             doOnEnd {
                 scannerView.invalidate()
@@ -55,7 +55,7 @@ class ScannerViewHelper {
             duration = oneWayAnimDuration
             startDelay = delay
             doOnStart {
-                scannerView.translationY = -scannerView.height.toFloat()
+                scannerView.translationY = 0f
                 scannerView.alpha = 0f
                 scannerView.rotation = 180f
             }
