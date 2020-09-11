@@ -11,6 +11,7 @@ import kotlin.math.roundToLong
 class ScannerViewHelper {
 
     private val oneWayAnimDuration = 1000L
+    private val delay = 100L
     private lateinit var scannerView: View
     private lateinit var qrIV: ImageView
 
@@ -32,10 +33,9 @@ class ScannerViewHelper {
             doOnStart {
                 scannerView.rotation = 0f
                 scannerView.alpha = 0f
-                scannerView.translationY = 0f
+                scannerView.translationY = 0f + scannerView.height.toFloat()
             }
             doOnEnd {
-                scannerView.translationY = (-qrIV.height.toFloat() - scannerView.height.toFloat())
                 scannerView.invalidate()
             }
         }
@@ -53,7 +53,9 @@ class ScannerViewHelper {
         with(animator) {
             interpolator = android.view.animation.AccelerateDecelerateInterpolator()
             duration = oneWayAnimDuration
+            startDelay = delay
             doOnStart {
+                scannerView.translationY = -scannerView.height.toFloat()
                 scannerView.alpha = 0f
                 scannerView.rotation = 180f
             }
@@ -91,10 +93,10 @@ class ScannerViewHelper {
         val set = AnimatorSet()
         val fade = AnimatorSet()
         fade.playSequentially(
-            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = 100L),
+            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = delay),
             fadeAnim(oneWayAnimDuration / 4, 1f, 1f),
             fadeAnim(oneWayAnimDuration / 4, 1f, 0f),
-            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = 100L),
+            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = delay * 2),
             fadeAnim(oneWayAnimDuration / 4, 1f, 1f),
             fadeAnim(oneWayAnimDuration / 4, 1f, 0f)
         )
