@@ -19,7 +19,6 @@ class ScannerViewHelper {
         this.scannerView = scannerView
         this.qrIV = qrIV
     }
-
     private fun upAnim(): ObjectAnimator {
         val animator =
             ObjectAnimator.ofFloat(
@@ -33,9 +32,9 @@ class ScannerViewHelper {
             doOnStart {
                 scannerView.rotation = 0f
                 scannerView.alpha = 0f
-                scannerView.translationY = 0f
             }
             doOnEnd {
+                scannerView.translationY = (-qrIV.height.toFloat() - scannerView.height.toFloat())
                 scannerView.invalidate()
             }
         }
@@ -53,14 +52,13 @@ class ScannerViewHelper {
         with(animator) {
             interpolator = android.view.animation.AccelerateDecelerateInterpolator()
             duration = oneWayAnimDuration
-            startDelay = delay
             doOnStart {
-                scannerView.translationY = 0f
                 scannerView.alpha = 0f
                 scannerView.rotation = 180f
             }
             doOnEnd {
                 scannerView.alpha = 0f
+                scannerView.translationY = 0f
             }
         }
 
@@ -95,10 +93,10 @@ class ScannerViewHelper {
         fade.playSequentially(
             fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = delay),
             fadeAnim(oneWayAnimDuration / 4, 1f, 1f),
-            fadeAnim(oneWayAnimDuration / 4, 1f, 0f),
-            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = delay * 2),
+            fadeAnim(oneWayAnimDuration / 8, 1f, 0f),
+            fadeAnim((oneWayAnimDuration / 2.5).roundToLong(), 0f, 1f, delay = delay + oneWayAnimDuration / 8),
             fadeAnim(oneWayAnimDuration / 4, 1f, 1f),
-            fadeAnim(oneWayAnimDuration / 4, 1f, 0f)
+            fadeAnim(oneWayAnimDuration / 8, 1f, 0f)
         )
         set.playSequentially(
             upAnim(), downAnim()
@@ -106,5 +104,4 @@ class ScannerViewHelper {
         set.start()
         fade.start()
     }
-
 }
