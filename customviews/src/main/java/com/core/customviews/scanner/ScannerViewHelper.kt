@@ -32,10 +32,9 @@ class ScannerViewHelper {
             doOnStart {
                 scannerView.rotation = 0f
                 scannerView.alpha = 0f
-                scannerView.translationY = 0f
+                scannerView.translationY = 0f + scannerView.height.toFloat()
             }
             doOnEnd {
-                scannerView.translationY = (-qrIV.height.toFloat() - scannerView.height.toFloat())
                 scannerView.invalidate()
             }
         }
@@ -54,6 +53,7 @@ class ScannerViewHelper {
             interpolator = android.view.animation.AccelerateDecelerateInterpolator()
             duration = oneWayAnimDuration
             doOnStart {
+                scannerView.translationY = (-qrIV.height.toFloat() - scannerView.height.toFloat())
                 scannerView.alpha = 0f
                 scannerView.rotation = 180f
             }
