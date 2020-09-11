@@ -118,18 +118,22 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
                 editText.inputType = InputType.TYPE_NULL
 
                 if (!profileItemData.dropDown.isNullOrEmpty()) {
-                    if (profileItemData.dropDown.size < 2)
+                    if (profileItemData.dropDown.size < 2) {
                         visibility = View.GONE
-                    else {
+
+                        editText.setText(profileItemData.dropDown.last())
+                    } else {
                         setDropdown(profileItemData.dropDown, R.layout.item_dropdown) {
                             editText.setText(profileItemData.dropDown[it])
                         }
+
+                        val current =
+                            profileItemData.dropDown.find { item -> item == profileItemData.currentData }
+
+                        editText.setText(current)
                     }
 
-                    val current =
-                        profileItemData.dropDown.find { item -> item == profileItemData.currentData }
 
-                    editText.setText(current)
                     editText.isFocusable = false
                 } else {
                     visibility = View.GONE
