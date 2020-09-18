@@ -81,9 +81,8 @@ class IncrDecrView : ConstraintLayout, IIncrDecrView {
         decreaseView = incr_decr_view_minus_iv
         increaseView = incr_decr_view_plus_iv
 
-        setInitialData()
-
         setClickListenerForItems()
+        setInitialData()
     }
 
     fun setInitialData() {
