@@ -1,4 +1,4 @@
-package com.core.customviews
+package com.core.customviews.login
 
 import android.content.Context
 import android.text.Editable

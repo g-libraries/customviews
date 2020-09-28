@@ -1,4 +1,4 @@
-package com.core.customviews
+package com.core.customviews.login
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputConnectionWrapper
 import android.view.inputmethod.EditorInfo
+import com.core.customviews.ToggleBackgroundEditText
 import timber.log.Timber
 
 /**
@@ -45,7 +46,9 @@ class AuthCodeErasableEditText : ToggleBackgroundEditText {
                         KeyEvent.ACTION_DOWN,
                         KEYCODE_DELETE
                     )
-                ) && sendKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KEYCODE_DELETE))
+                ) && sendKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN,
+                    KEYCODE_DELETE
+                ))
             } else super.deleteSurroundingText(beforeLength, afterLength)
 
         }
