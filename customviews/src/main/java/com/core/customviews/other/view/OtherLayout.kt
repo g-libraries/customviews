@@ -45,7 +45,7 @@ class OtherLayout(context: Context, attrs: AttributeSet) : LinearLayout(context,
 
         for (item in otherDataItems) {
             val viewItem = OtherItemView(context, item, itemLayout)
-            val divider: View = LayoutInflater.from(context).inflate(R.layout.divider, this)
+            val divider: View = LayoutInflater.from(context).inflate(R.layout.divider, this, false)
 
             divider.setBackgroundColor(ContextCompat.getColor(context, item.dividerBg))
             viewItem.titleTV.setTextColor(ContextCompat.getColor(context, item.textColor))
