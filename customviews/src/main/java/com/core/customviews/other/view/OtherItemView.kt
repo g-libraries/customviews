@@ -63,10 +63,6 @@ class OtherItemView : LinearLayout, IOtherItemView {
         setOnClickListener {
             otherItemData.onClick.invoke(it)
         }
-
-        updateLayoutParams {
-
-        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
