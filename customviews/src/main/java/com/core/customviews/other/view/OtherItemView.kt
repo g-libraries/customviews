@@ -68,8 +68,12 @@ class OtherItemView : LinearLayout, IOtherItemView {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(
             widthMeasureSpec,
-            context.resources.getDimensionPixelSize(R.dimen._40sdp)
+            MeasureSpec.makeMeasureSpec(
+                context.resources.getDimensionPixelSize(R.dimen._40sdp),
+                MeasureSpec.EXACTLY
+            )
         )
+
     }
 
     private fun setType(type: OtherItemType) {
