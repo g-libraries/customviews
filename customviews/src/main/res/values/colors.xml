@@ -4,6 +4,8 @@
     <color name="searchAccent">#FFF</color>
     <color name="searchHint">#898989</color>
 
+    <color name="text">#343434</color>
+
     <color name="colorPrimary">#EF5350</color>
     <color name="colorPrimaryDark">#B8413E</color>
     <color name="colorAccent">#AB47BC</color>

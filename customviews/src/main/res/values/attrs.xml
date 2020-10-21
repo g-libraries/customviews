@@ -30,6 +30,10 @@
         <attr name="item_layout" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="OtherLayout">
+        <attr name="ol_item_layout" format="reference" />
+    </declare-styleable>
+
     <declare-styleable name="SearchLayout">
         <attr name="sl_icon_searchInactive" format="reference" />
         <attr name="sl_icon_searchActive" format="reference" />
