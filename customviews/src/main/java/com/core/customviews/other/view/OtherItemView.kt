@@ -73,7 +73,6 @@ class OtherItemView : LinearLayout, IOtherItemView {
                 MeasureSpec.EXACTLY
             )
         )
-
     }
 
     private fun setType(type: OtherItemType) {

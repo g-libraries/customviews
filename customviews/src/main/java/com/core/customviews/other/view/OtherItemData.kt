@@ -1,6 +1,7 @@
 package com.core.customviews.other.view
 
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import com.core.customviews.other.FieldType
 
@@ -9,6 +10,10 @@ data class OtherItemData(
     var drawable: Int,
     var title: String,
     var fieldType: FieldType,
+    @ColorRes
+    var textColor: Int,
+    @ColorRes
+    var dividerBg: Int,
     var onClick: (View) -> Unit = { },
     var onSwitchChanged: ((Boolean) -> Unit)? = null
 )

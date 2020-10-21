@@ -2,7 +2,10 @@ package com.core.customviews.other.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.getResourceIdOrThrow
 import androidx.core.view.updateLayoutParams
 import com.core.customviews.R
@@ -25,6 +28,7 @@ class OtherLayout(context: Context, attrs: AttributeSet) : LinearLayout(context,
 
         val a = context.obtainStyledAttributes(attrs, R.styleable.OtherLayout)
 
+
         try {
             itemLayout = a.getResourceIdOrThrow(R.styleable.OtherLayout_ol_item_layout)
         } finally {
@@ -41,20 +45,14 @@ class OtherLayout(context: Context, attrs: AttributeSet) : LinearLayout(context,
 
         for (item in otherDataItems) {
             val viewItem = OtherItemView(context, item, itemLayout)
+            val divider: View = LayoutInflater.from(context).inflate(R.layout.divider, this)
+
+            divider.setBackgroundColor(ContextCompat.getColor(context, item.dividerBg))
+            viewItem.titleTV.setTextColor(ContextCompat.getColor(context, item.textColor))
 
             addView(viewItem)
-            otherViewItems[item.fieldType] = viewItem
-        }
-    }
+            addView(divider)
 
-    override fun udpate(otherDataItems: ArrayList<OtherItemData>) {
-        removeAllViews()
-        otherViewItems.clear()
-
-        for (item in otherDataItems) {
-            val viewItem = OtherItemView(context, item, itemLayout)
-
-            addView(viewItem)
             otherViewItems[item.fieldType] = viewItem
         }
     }

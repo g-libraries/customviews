@@ -13,11 +13,7 @@ enum class OtherItemType {
 }
 
 interface IOtherLayout {
-    fun setInitData(
-        otherDataItems: ArrayList<OtherItemData>
-    )
-
-    fun udpate(otherDataItems: ArrayList<OtherItemData>)
+    fun setInitData(otherDataItems: ArrayList<OtherItemData>)
 
     fun getItemView(fieldType: FieldType): IOtherItemView
 }

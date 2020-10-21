@@ -5,6 +5,7 @@
     <color name="searchHint">#898989</color>
 
     <color name="text">#343434</color>
+    <color name="input">#F0F0F0</color>
 
     <color name="colorPrimary">#EF5350</color>
     <color name="colorPrimaryDark">#B8413E</color>
