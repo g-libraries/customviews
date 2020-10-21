@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.core.content.res.getResourceIdOrThrow
+import androidx.core.view.updateLayoutParams
 import com.core.customviews.R
 import com.core.customviews.other.FieldType
 import java.util.*

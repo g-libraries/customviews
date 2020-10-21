@@ -6,6 +6,8 @@ import com.core.customviews.R
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
+import androidx.core.view.updateLayoutParams
 import kotlinx.android.synthetic.main.item_other.view.*
 
 
@@ -61,6 +63,17 @@ class OtherItemView : LinearLayout, IOtherItemView {
         setOnClickListener {
             otherItemData.onClick.invoke(it)
         }
+
+        updateLayoutParams {
+
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(
+            widthMeasureSpec,
+            context.resources.getDimensionPixelSize(R.dimen._40sdp)
+        )
     }
 
     private fun setType(type: OtherItemType) {
