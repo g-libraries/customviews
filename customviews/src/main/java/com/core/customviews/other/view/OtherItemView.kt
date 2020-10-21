@@ -57,6 +57,10 @@ class OtherItemView : LinearLayout, IOtherItemView {
         } else {
             setType(OtherItemType.SWITCH)
         }
+
+        setOnClickListener {
+            otherItemData.onClick.invoke(it)
+        }
     }
 
     private fun setType(type: OtherItemType) {
@@ -72,6 +76,10 @@ class OtherItemView : LinearLayout, IOtherItemView {
                 }
 
                 switch.setOnCheckedChangeListener(onCheckedListener)
+
+                setOnClickListener {
+                    switch.toggle()
+                }
             }
         }
     }
