@@ -9,8 +9,6 @@
         android:layout_width="@dimen/_17sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginStart="@dimen/_12sdp"
-        android:clickable="false"
-        android:focusable="false"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

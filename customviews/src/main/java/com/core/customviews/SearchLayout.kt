@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import com.core.base.usecases.setOnOneClickListener
 import kotlinx.android.synthetic.main.search_view.view.*
 
 class SearchLayout : ConstraintLayout, View.OnFocusChangeListener {
@@ -113,6 +114,10 @@ class SearchLayout : ConstraintLayout, View.OnFocusChangeListener {
         searchIV = search_view_search_iv
         searchET = search_view_input_et
         clearIV = search_view_clear_iv
+
+        search_view_search_iv.setOnOneClickListener {
+            searchET.callOnClick()
+        }
 
         if (deleteUnderLine)
             searchET.setBackgroundColor(Color.TRANSPARENT)
