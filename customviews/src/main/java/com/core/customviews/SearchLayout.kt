@@ -115,8 +115,8 @@ class SearchLayout : ConstraintLayout, View.OnFocusChangeListener {
         searchET = search_view_input_et
         clearIV = search_view_clear_iv
 
-        search_view_search_iv.setOnOneClickListener {
-            searchET.callOnClick()
+        searchIV.setOnOneClickListener {
+            searchET.requestFocus()
         }
 
         if (deleteUnderLine)
