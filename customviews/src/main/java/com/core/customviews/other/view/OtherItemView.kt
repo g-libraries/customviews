@@ -22,6 +22,7 @@ class OtherItemView : LinearLayout, IOtherItemView {
     lateinit var otherItemData: OtherItemData
     lateinit var titleTV: TextView
     lateinit var iconIV: AppCompatImageView
+    lateinit var amountTV: TextView
     lateinit var switch: Switch
 
     var onCheckedListener: CompoundButton.OnCheckedChangeListener? = null
@@ -50,6 +51,15 @@ class OtherItemView : LinearLayout, IOtherItemView {
         titleTV = item_other_tv
         iconIV = item_other_iv
         switch = item_other_switch
+        amountTV = item_other_amount
+
+        otherItemData.amountBGColor?.let {
+            amountTV.setBackgroundResource(it)
+        }
+
+        otherItemData.amountTextColor?.let {
+            amountTV.setTextColor(it)
+        }
 
         titleTV.text = otherItemData.title
         iconIV.setImageResource(otherItemData.drawable)
@@ -102,6 +112,16 @@ class OtherItemView : LinearLayout, IOtherItemView {
             switch.setOnCheckedChangeListener(null)
             switch.toggle()
             switch.setOnCheckedChangeListener(onCheckedListener)
+        }
+    }
+
+    override fun setAmount(amount: Int) {
+        if (amount > 0) {
+            amountTV.visibility = View.VISIBLE
+
+            amountTV.text = amount.toString()
+        } else {
+            amountTV.visibility = View.GONE
         }
     }
 }

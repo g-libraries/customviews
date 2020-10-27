@@ -20,4 +20,5 @@ interface IOtherLayout {
 
 interface IOtherItemView {
     fun changeSwitchState(state: Boolean)
+    fun setAmount(amount: Int)
 }

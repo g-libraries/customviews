@@ -15,5 +15,9 @@ data class OtherItemData(
     @ColorRes
     var dividerBg: Int,
     var onClick: (View) -> Unit = { },
+    @DrawableRes
+    var amountBGColor: Int? = null,
+    @ColorRes
+    var amountTextColor: Int? = null,
     var onSwitchChanged: ((Boolean) -> Unit)? = null
 )
