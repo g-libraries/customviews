@@ -57,6 +57,6 @@ class OtherLayout(context: Context, attrs: AttributeSet) : LinearLayout(context,
         }
     }
 
-    override fun getItemView(fieldType: FieldType): IOtherItemView = otherViewItems[fieldType]!!
+    override fun getItemView(fieldType: FieldType): IOtherItemView? = otherViewItems[fieldType]
 
 }

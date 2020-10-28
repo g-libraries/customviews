@@ -15,7 +15,7 @@ enum class OtherItemType {
 interface IOtherLayout {
     fun setInitData(otherDataItems: ArrayList<OtherItemData>)
 
-    fun getItemView(fieldType: FieldType): IOtherItemView
+    fun getItemView(fieldType: FieldType): IOtherItemView?
 }
 
 interface IOtherItemView {
