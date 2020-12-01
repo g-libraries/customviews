@@ -104,7 +104,12 @@ class PhoneNumberEditText : AppCompatEditText {
 
                 }
 
-                setSelection(selection)
+                try {
+                    setSelection(selection)
+                } catch (e: IndexOutOfBoundsException) {
+                    placeCursorToEnd()
+                }
+
             }
         })
     }
