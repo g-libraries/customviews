@@ -7,10 +7,10 @@ import com.core.customviews.profile.view.ProfileItemData
 
 abstract class ProfileDataManager {
 
-    lateinit var list: ArrayList<ProfileItem>
+    var list: ArrayList<ProfileItem> = arrayListOf()
     var profileItemDataList: ArrayList<ProfileItemData> = arrayListOf()
-    lateinit var dataList: ArrayList<String?>
-
+    var dataList: ArrayList<String?> = arrayListOf()
+    
     fun setLayout(list: ArrayList<ProfileItem>) {
         this.list = list
         dataList = getDataSet()
