@@ -26,6 +26,10 @@ class PhoneNumberEditText : AppCompatEditText {
         addTextWatcher()
     }
 
+    override fun setSelection(index: Int) {
+        super.setSelection((text?.length ?: 0).coerceAtMost(index))
+    }
+
     private fun addTextWatcher() {
         addTextChangedListener(object : TextWatcher {
             var textBefore: String = ""
