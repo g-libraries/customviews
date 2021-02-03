@@ -22,6 +22,10 @@ class PhoneNumberEditText : AppCompatEditText {
 
     var isBackSpace = false
 
+    var inputMask = "+XXX XX XXX XX XX"
+
+    var prefixValue = "+380 "
+
     init {
         addTextWatcher()
     }
@@ -68,10 +72,11 @@ class PhoneNumberEditText : AppCompatEditText {
                     Timber.e(e)
                 }
 
-                var resultText = textToConvert.toString().convertToPhoneNumberWithReplace()
+                var resultText = textToConvert.toString().convertToPhoneNumberWithReplace(inputMask)
+                val prefixLength = prefixValue.length
 
                 try {
-                    if (resultText.toCharArray()[5] == '0') {
+                    if (resultText.toCharArray()[prefixLength] == '0') {
                         resultText = textBefore
                         selection -= 1
                     }
@@ -79,14 +84,14 @@ class PhoneNumberEditText : AppCompatEditText {
 
                 }
 
-                if (resultText.startsWith("+380 ", true)) {
+                if (resultText.startsWith(prefixValue, true)) {
 
                 } else {
                     resultText = try {
-                        textBefore = if (resultText.length > 5) textBefore else "+380 "
+                        textBefore = if (resultText.length > prefixLength) textBefore else prefixValue
                         textBefore
                     } catch (e: IndexOutOfBoundsException) {
-                        "+380 "
+                        prefixValue
                     }
                 }
 
@@ -94,10 +99,8 @@ class PhoneNumberEditText : AppCompatEditText {
 
                 addTextChangedListener(this)
 
-                if (selection < 5) {
-                    selection = 4
-                } else {
-
+                if (selection < prefixLength) {
+                    selection = prefixLength - 1
                 }
 
                 try {
