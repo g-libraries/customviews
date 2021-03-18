@@ -21,11 +21,11 @@ class TogglePassword : ConstraintLayout {
     private lateinit var iconIV: ImageView
     private var showPassword = false
 
-    constructor(context: Context?, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr

@@ -18,11 +18,11 @@ import kotlinx.android.synthetic.main.search_view.view.*
 
 class SearchLayout : ConstraintLayout, View.OnFocusChangeListener {
 
-    constructor(context: Context?, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet, defStyleAttr: Int) : super(
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr

@@ -35,7 +35,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
     lateinit var textWatcher: TextWatcher
 
     constructor(
-        context: Context?,
+        context: Context,
         profileItemData: ProfileItemData,
         itemLayout: Int,
         changedListener: OnChangedListener
@@ -47,7 +47,7 @@ class ProfileItemView : ConstraintLayout, ProfileItem {
         this.changedListener = changedListener
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     fun init(profileItemData: ProfileItemData, itemLayout: Int) {
         this.profileItemData = profileItemData
