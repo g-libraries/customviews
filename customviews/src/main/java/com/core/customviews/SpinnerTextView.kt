@@ -13,11 +13,11 @@ class SpinnerTextView : DirtyDataTextView {
     lateinit var dataList: Array<String>
     lateinit var listPopupView: ListPopupWindow
 
-    constructor(context: Context?) : super(context)
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     fun setDropdown(dataList: Array<String>, listItemId: Int, listener: (Int) -> Unit) {
         this.dataList = dataList
